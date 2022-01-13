@@ -16,7 +16,7 @@ public class Constants {
      */
     public static final String LOCALHOST_IP = "127.0.0.1";
 
-    public static final String LOG_ID = "LogId";
+    public static final String LOG_ID = "logId";
 
     /**
      * uid生成策略枚举数组

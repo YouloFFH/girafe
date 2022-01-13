@@ -41,7 +41,7 @@ public class ShortLinkController {
      */
     @PostMapping("/api/genShortLink")
     public GenShortLinkResponse genShortLink(@RequestBody @Valid GenShortLinkRequest request, HttpServletRequest httpRequest) {
-        ThreadContext.put(Constants.LOG_ID, RandomUtil.genSpecialLengthRandString(12));
+        ThreadContext.put(Constants.LOG_ID, RandomUtil.genSpecialLengthRandString(8));
         LOGGER.info("生成短链api >> 请求参数：{}", JSONObject.toJSONString(request));
         GenShortLinkModel model = BeanUtil.copyProperties(request, GenShortLinkModel.class);
         // 获取请求ip
