@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="300">
+    <Appenders>
+        <!-- 控制台输出 -->
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout charset="UTF-8">
+                <pattern>[LOGID:%X{logId}] [%-5p][%d{yyyy-MM-dd HH:mm:ss,SSS}][%C{1}:%L] %m%n</pattern>
+            </PatternLayout>
+            <BurstFilter level="info" rate="16" maxBurst="100" />
+        </Console>
+        <!-- 保存到文件 按天分隔 -->
+        <RollingFile name="RollingFile"
+                     fileName="/www/girafe/logs/girafe.log"
+                     filePattern="/www/girafe/logs/girafe.log.%d{yyyyMMdd}.log"
+                     append="true">
+            <!-- 输出格式 -->
+            <PatternLayout>
+                <pattern>[LOGID:%X{logId}] [%-5p][%d{yyyy-MM-dd HH:mm:ss,SSS}][%C{1}:%L] %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <!-- 间隔 -->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- root logger 配置 -->
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+        <!-- mybatis -->
+        <Logger name="com.mybatis" level="info" />
+        <Logger name="org.hibernate" level="info"/>
+        <!-- springboot -->
+        <Logger name="org.springframework" level="info" />
+        <!-- 数据源 -->
+        <Logger name="druid.sql.Statement" level="debug"/>
+        <!-- thymeleaf -->
+        <Logger name="org.thymeleaf" level="info"/>
+    </Loggers>
+
+</Configuration>

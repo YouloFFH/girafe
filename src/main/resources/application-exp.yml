@@ -1,0 +1,78 @@
+# 应用服务 WEB 访问端口
+server:
+  port: 8080
+# spring配置
+spring:
+  application:
+    # 应用名称
+    name: girafe
+  # 数据源配置
+  datasource:
+    name: girafe-db
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test_db?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    druid:
+      # 初始化大小，最小，最大
+      initial-size: 1
+      min-idle: 1
+      max-active: 5
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存时间
+      min-evictable-idle-time-millis: 300000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开 PSCache，并且指定每个连接上 PSCache 的大小
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      # 配置监控统计拦截的 Filter，去掉后监控界面 SQL 无法统计，wall 用于防火墙
+      #filters: stat,wall,log4j
+      # 通过 connection-properties 属性打开 mergeSql 功能；慢 SQL 记录
+      connection-properties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
+  # thymeleaf配置
+  thymeleaf:
+    cache: true
+    # 检查模板是否存在，然后再呈现
+    check-template: true
+    # 检查模板位置是否正确（默认值 :true ）
+    check-template-location: true
+    #Content-Type 的值（默认值： text/html ）
+    content-type: text/html
+    # 开启 MVC Thymeleaf 视图解析（默认值： true ）
+    enabled: true
+    # 模板编码
+    encoding: UTF-8
+    # 要被排除在解析之外的视图名称列表，⽤逗号分隔
+    excluded-view-names:
+    # 要运⽤于模板之上的模板模式。另⻅ StandardTemplate-ModeHandlers( 默认值： HTML5)
+    mode: HTML
+    # 在构建 URL 时添加到视图名称前的前缀（默认值： classpath:/templates/ ）
+    prefix: classpath:/templates/
+    # 在构建 URL 时添加到视图名称后的后缀（默认值： .html ）
+    suffix: .html
+# mybatis配置
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+# log4j2配置
+logging:
+  config: classpath:log4j2.xml
+  level:
+    root: info
+
+# 应用配置
+girafe:
+  # 说明一下：shortWebUrlRoot是短链的域名，它用来重定向，要尽可能的短。mainWebUrlRoot是主站根目，是前端页面的地址。最后一定要加左斜线
+  # 短链根目录
+  shortWebUrlRoot: http://localhost:8080/
+  # 主站根目录
+  mainWebUrlRoot: http://localhost:8080/
+  # api调用间隔时间
+  apiReqInterval: 1
+  # 生成token的密码
+  genTokenPassword: 6Gdd572UJVEedTIW
