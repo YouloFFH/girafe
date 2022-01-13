@@ -35,7 +35,7 @@ public class RedirectController {
 
     @RequestMapping("/{uid}")
     public String redirect(@PathVariable("uid") String uid, HttpServletRequest request) {
-        ThreadContext.put(Constants.LOG_ID, RandomUtil.genSpecialLengthRandString(12));
+        ThreadContext.put(Constants.LOG_ID, RandomUtil.genSpecialLengthRandString(8));
         LOGGER.info("重定向api >> 重定向uid:{}", uid);
         String mainSite = myAppConfigure.getMainWebUrlRoot();
         // uid为空重定向到主页

@@ -48,7 +48,7 @@ public class RandomUtil {
         int fullCharLength = Constants.NUMS_AND_LETTERS_CHARS.length();
         Random random = new Random();
         StringBuilder res = new StringBuilder();
-        for (int i = 0; i < fullCharLength; i++) {
+        for (int i = 0; i < digit; i++) {
             int index = random.nextInt(fullCharLength);
             res.append(Constants.NUMS_AND_LETTERS_CHARS.charAt(index));
         }

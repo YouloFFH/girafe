@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class IndexController {
 
+    /**
+     * 主页
+     * @return
+     */
     @RequestMapping("/")
     public String mainPage() {
         return ViewConstants.MAIN_PAGE_HTML_FILE_NAME;
