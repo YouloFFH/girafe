@@ -22,6 +22,10 @@ public class BusinessException extends RuntimeException {
      * 服务器忙
      */
     public static final BusinessException SERVER_BUSY = new BusinessException(RespCodeEnum.SERVER_BUSY.getCode(), RespCodeEnum.SERVER_BUSY.getMsg());
+    /**
+     * token错误
+     */
+    public static final BusinessException TOKEN_ERROR = new BusinessException(RespCodeEnum.TOKEN_ERROR.getCode(), RespCodeEnum.TOKEN_ERROR.getMsg());
 
     /* get set */
     public String getErrorCode() {

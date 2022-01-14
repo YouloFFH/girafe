@@ -2,6 +2,7 @@ package cc.fireflyhut.girafe.service.impl;
 
 import cc.fireflyhut.girafe.configure.MyAppConfigure;
 import cc.fireflyhut.girafe.constants.Constants;
+import cc.fireflyhut.girafe.dao.ApiGrantTokenDAO;
 import cc.fireflyhut.girafe.dao.UrlMappingDAO;
 import cc.fireflyhut.girafe.enums.GenUrlIdStrategyEnum;
 import cc.fireflyhut.girafe.exception.BusinessException;
@@ -10,6 +11,7 @@ import cc.fireflyhut.girafe.pojo.bo.result.GenShortLinkResult;
 import cc.fireflyhut.girafe.pojo.dbobject.UrlMappingDO;
 import cc.fireflyhut.girafe.service.GenShortLinkService;
 import cc.fireflyhut.girafe.service.handle.UrlIdHandle;
+import cc.fireflyhut.girafe.service.helper.ApiTokenHelper;
 import cc.fireflyhut.girafe.util.DateTimeUtil;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
@@ -38,6 +40,9 @@ public class GenShortLinkServiceImpl implements GenShortLinkService {
     @Autowired
     private MyAppConfigure myAppConfigure;
 
+    @Autowired
+    private ApiTokenHelper apiTokenHelper;
+
     private final Date lastReqTime;
 
     // 公平的可重入锁
@@ -65,6 +70,11 @@ public class GenShortLinkServiceImpl implements GenShortLinkService {
                 checkAccessInterval();
             } else {
                 // 检查token
+                boolean effectiveToken = apiTokenHelper.checkToken(token);
+                if (!effectiveToken) {
+                    LOGGER.error("上传的token错误：{}", token);
+                    throw BusinessException.TOKEN_ERROR;
+                }
             }
             lastReqTime.setTime(System.currentTimeMillis());
             /* 2.获取一系列参数 */

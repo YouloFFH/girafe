@@ -16,4 +16,11 @@ public interface ApiGrantTokenMapper {
     int updateByPrimaryKeySelective(ApiGrantTokenDO record);
 
     int updateByPrimaryKey(ApiGrantTokenDO record);
+
+    /**
+     * 通过token更新
+     * @param record
+     * @return
+     */
+    int updateByTokenWhenUse(ApiGrantTokenDO record);
 }

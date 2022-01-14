@@ -108,4 +108,15 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <update id="updateByTokenWhenUse" parameterType="cc.fireflyhut.girafe.pojo.dbobject.ApiGrantTokenDO">
+    update gf_api_grant_token
+    <set>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      use_count = use_count + 1
+    </set>
+    where token = #{token,jdbcType=BIGINT}
+  </update>
 </mapper>
