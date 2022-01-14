@@ -8,7 +8,8 @@ public enum RespCodeEnum {
     REQUEST_TIME_OUT("1001", "请求超时"),
     PARAMETER_ERROR("1002", "参数错误"),
     SERVER_BUSY("1003", "服务器忙"),
-    TOKEN_ERROR("1004", "token错误");
+    TOKEN_ERROR("1004", "token错误"),
+    GEN_TOKEN_FAIL("1005", "生成token失败");
 
     private String code;
 

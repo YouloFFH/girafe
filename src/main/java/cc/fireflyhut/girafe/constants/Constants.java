@@ -29,6 +29,11 @@ public class Constants {
     public static final String NUMS_AND_LETTERS_CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
     /**
+     * 所有的数字和小写字母
+     */
+    public static final String NUMS_AND_LOWER_LETTERS = "0123456789abcdefghijklmnopqrstuvwxyz";
+
+    /**
      * 公共数字常量-1
      */
     public static final String STRING_NG1 = "-1";

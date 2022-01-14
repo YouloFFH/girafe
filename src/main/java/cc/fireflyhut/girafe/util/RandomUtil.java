@@ -55,4 +55,20 @@ public class RandomUtil {
         return res.toString();
     }
 
+    /**
+     * 生成指定长度随机小写字符串
+     * @param digit 长度
+     * @return 随机字符串
+     */
+    public static String genSpecialLengthRandLowString(int digit) {
+        int fullCharLength = Constants.NUMS_AND_LOWER_LETTERS.length();
+        Random random = new Random();
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < digit; i++) {
+            int index = random.nextInt(fullCharLength);
+            res.append(Constants.NUMS_AND_LOWER_LETTERS.charAt(index));
+        }
+        return res.toString();
+    }
+
 }

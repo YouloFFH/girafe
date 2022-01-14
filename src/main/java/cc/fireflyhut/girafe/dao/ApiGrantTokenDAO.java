@@ -24,4 +24,15 @@ public class ApiGrantTokenDAO {
         return apiGrantTokenMapper.updateByTokenWhenUse(updateDo);
     }
 
+    /**
+     * 插入一个新token
+     * @param apiGrantTokenDO
+     * @return
+     */
+    public int insertNewToken(ApiGrantTokenDO apiGrantTokenDO) {
+        apiGrantTokenDO.setCreateTime(DateTimeUtil.getNowDate());
+        apiGrantTokenDO.setUpdateTime(DateTimeUtil.getNowDate());
+        return apiGrantTokenMapper.insertSelective(apiGrantTokenDO);
+    }
+
 }

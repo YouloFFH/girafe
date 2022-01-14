@@ -26,6 +26,10 @@ public class BusinessException extends RuntimeException {
      * token错误
      */
     public static final BusinessException TOKEN_ERROR = new BusinessException(RespCodeEnum.TOKEN_ERROR.getCode(), RespCodeEnum.TOKEN_ERROR.getMsg());
+    /**
+     * token生成失败
+     */
+    public static final BusinessException GEN_TOKEN_FAIL = new BusinessException(RespCodeEnum.GEN_TOKEN_FAIL.getCode(), RespCodeEnum.GEN_TOKEN_FAIL.getMsg());
 
     /* get set */
     public String getErrorCode() {
